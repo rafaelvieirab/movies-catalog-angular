@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+
+/* Variables */
+@import './app/styles/variables.scss';
+
+body {
+  font-family: 'Frank Ruhl Libre', serif;
+  box-sizing: border-box;
+  color: $light;
+  background-color: $background-dark;
+  font-size: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+input {
+  background-color: $background-input;
+  color:#FFF
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

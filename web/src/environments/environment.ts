@@ -6,6 +6,12 @@ export const environment = {
   production: false
 };
 
+export const the_movie_database_api = {
+  baseUrlv3: 'https://api.themoviedb.org/3',
+  baseUrlv4: 'https://api.themoviedb.org/4',
+  key: '',
+}
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

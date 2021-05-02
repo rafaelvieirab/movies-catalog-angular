@@ -9,7 +9,8 @@ export const environment = {
 export const the_movie_database_api = {
   baseUrlv3: 'https://api.themoviedb.org/3',
   baseUrlv4: 'https://api.themoviedb.org/4',
-  key: '',
+  baseUrlImage: 'https://image.tmdb.org/t/p',
+  key: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYTcxNWZjYWRmZDQ0N2ZlOGUzOGU3YTk4NmI2NDE2YyIsInN1YiI6IjYwODcxNWExODQ0NDhlMDA3OTMwZTMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WseOnogaf6MKod-quLNVFy8oo-MmcdkzuvjX3zfYE-M',
 }
 
 /*

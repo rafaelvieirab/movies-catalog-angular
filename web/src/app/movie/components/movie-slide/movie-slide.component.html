@@ -1,0 +1,27 @@
+<div class="movies-list">
+  <div class="movies-list-title-container">
+    <h6 class="movies-list-title"> {{ text }} </h6>
+  </div>
+
+  <ul class="slider">
+    <button class="material-icons handleMovies handleMoviesPrev" (click)="previous()">
+      <i class="material-icons">
+        arrow_backward_ios
+      </i>
+    </button>
+
+    <mat-nav-list class="slider-content" role="list" id="slider-movies">
+      <li class="slider-item" *ngFor="let movie of movies">
+        <a routerLink="/movies/{{ movie.id }}" class="movie-link">
+          <img class="movie-image" [src]="movie.poster_path" [alt]="movie.title">
+        </a>
+      </li>
+    </mat-nav-list>
+
+    <button class="material-icons handleMovies handleMoviesNext" (click)="next()">
+      <i class="material-icons">
+        arrow_forward_ios
+      </i>
+    </button>
+  </ul>
+</div>

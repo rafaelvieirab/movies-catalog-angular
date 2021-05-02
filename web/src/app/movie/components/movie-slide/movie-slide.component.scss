@@ -1,0 +1,135 @@
+@import 'src/app/styles/variables.scss';
+
+.movies-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.movies-list .movies-list-title-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.movies-list-title-container .movies-list-title {
+  height: min-content;
+  margin-bottom: 0;
+  color: $light;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.movies-list .slider {
+  width: 100%;
+  margin-top: 8px;
+  padding: 0;
+  position: relative;
+  
+  display: flex;
+  align-items: center;
+
+  overflow-x: scroll;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: #850101 #4b4545;
+}
+
+.slider .handleMovies {
+  width: 4%;
+  min-width: 40px;
+  height: 95%;
+  position: absolute;
+  bottom: 0;
+  background-color: transparent;
+  text-align: center;
+  z-index: 3;
+  border: none;
+  opacity: 0.3;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider .handleMovies:hover { 
+  background-color: #000000;
+  color: $light;
+  opacity: 0.8;
+}
+
+.slider .handleMovies i {
+  height: auto;
+  width: 100%;
+  display: block;
+  align-self: center;
+  justify-content: center;
+  font-weight: 700;
+
+  color: $light;
+  font-size: 2.5vw;
+  text-align: center;
+  z-index: 4;
+  cursor: pointer;
+}
+
+.slider .handleMovies i:hover {
+  transform: scale(1.25);
+}
+
+.slider .handleMoviesPrev {
+  left: 8px;
+}
+
+.slider .handleMoviesNext {
+  right: 8px;
+}
+
+.slider .slider-content {
+  width: 100%;
+  height: 210px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.slider-content .slider-item {
+  width: 100%;
+  height: 200px;
+  margin-right: 8px;
+  cursor: pointer;
+
+  scroll-margin: 10px;
+  scroll-snap-align: start;
+}
+
+.slider-item .movie-link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-link .movie-image {
+  height: 200px;
+  object-fit: contain;
+  opacity: 0.8;
+  border-radius: 8px;
+}
+
+.movie-link .movie-image:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+@media screen and (max-width: 650px){
+  .slider .handleMovies {
+    display: none;
+  }
+}

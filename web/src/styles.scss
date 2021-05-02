@@ -7,6 +7,10 @@
 /* Variables */
 @import './app/styles/variables.scss';
 
+/* Material Style */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 body {
   font-family: 'Frank Ruhl Libre', serif;
   box-sizing: border-box;
@@ -33,5 +37,3 @@ ul {
   list-style: none;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

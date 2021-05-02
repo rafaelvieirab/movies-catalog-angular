@@ -1,0 +1,57 @@
+@import 'src/app/styles/variables.scss';
+
+.search-form {
+  margin-right: 32px;
+  color: $light;
+}
+
+.search-form .search-field {
+  width: 300px;
+}
+
+.search-field .search-label {
+  margin-bottom: 8px;
+  font-size: 1.4rem;
+  color: $light;
+}
+
+.search-field .search-icon {
+  margin-right: 8px;
+}
+
+.search-field .search-input {
+  width: 100%;
+  font-size: 1.2rem;
+  color: $light;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+}
+
+.search-field .search-input:focus {
+  color: $light;
+  background-color: $background-input;
+}
+
+.search-field .search-autoComplete {
+  width: 100%;
+  height: 100%;
+}
+
+.search-autoComplete .search-option {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-autoComplete .search-option-img {
+  margin-right: 8px;
+  height: 95%;
+}
+
+.search-autoComplete .search-option-title {
+  font-size: 1.2rem;
+  text-align: center;
+}

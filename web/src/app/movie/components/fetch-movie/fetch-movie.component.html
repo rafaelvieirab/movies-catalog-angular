@@ -1,0 +1,32 @@
+<form class="search-form">
+  <mat-form-field class="search-field">
+
+    <mat-label for="searchMovie" class="search-label">Filme</mat-label>
+
+    <mat-icon matPrefix class="search-icon">search</mat-icon>
+    <input matInput 
+      [formControl]="searchMovie" 
+      (change)="getMoviesBySearch()"  
+      class="search-input"
+      [matAutocomplete]="auto" 
+      placeholder="Qual filme você procura?"
+    >
+
+    <mat-autocomplete #auto="matAutocomplete" class="search-autoComplete">
+      <mat-option class="search-option" *ngIf="filteredMovies===[]">
+        <p>Procurando Filmes...</p>
+      </mat-option>
+      <mat-option 
+        *ngFor="let filtered of filteredMovies" 
+        class="search-option" 
+        [value]="filtered.title" 
+        routerLink="/movies/{{ filtered.id }}"
+      >
+        <img class="search-option-img" [src]="filtered.poster_path" height="48">
+        <span class="search-option-title">{{filtered.title}}</span>
+      </mat-option>
+
+    </mat-autocomplete>
+
+  </mat-form-field>
+</form>

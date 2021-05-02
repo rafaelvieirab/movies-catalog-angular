@@ -1,0 +1,60 @@
+<main>
+  <button class="material-icons btnGoBack" (click)="goBack()" title="Voltar">
+    arrow_backward_ios
+  </button>
+
+  <div class="movie-details-container">
+    <div class="movie-details">
+      <img [src]="movie.poster_path" alt="Poster do Filme">
+      <section class="movie-info">
+        <h3 class="movie-title">{{ movie.title }}</h3>
+
+        <div class="movie-data">
+          <p>
+            <b>Nota:</b> {{ movie.vote_average }} ({{ movie.vote_count }} votos).
+          </p>
+          <p *ngIf="movie.adult"><b>Somente para maiores de 18</b></p>
+          <p>
+            <b>Data de Lançamento:</b> {{ movie.release_date }}
+          </p>
+          <p>
+            <b>Popualridade:</b> {{ movie.popularity }}
+          </p>
+
+          <p class="movie-genres">
+            <b>Gêneros:</b>
+            <span *ngFor="let genre of movie.genres">
+              {{ genre.name }} |
+            </span>s>
+          </p>
+        </div>
+
+        <p class="movie-overview">
+          <b>Overview:</b> {{ movie.overview }}
+        </p>
+
+        <footer class="btnActions">
+          <button class="btnAdd" (click)="toggleAddMyList()">
+            <i class="material-icons">
+              add
+            </i>
+          </button>
+          <button class="btnRated" (click)="toRateMovie()">
+            <i class="material-icons">
+              star_rate
+            </i>
+          </button>
+        </footer>
+      </section>
+
+    </div>
+
+  </div>
+
+  <div class="other-movies">
+    <app-movie-slide class="" text="Recomendações" [movies]="recommendations"></app-movie-slide>
+  </div>
+  <div class="other-movies">
+    <app-movie-slide class="" text="Similares" [movies]="similar"></app-movie-slide>
+  </div>
+</main>

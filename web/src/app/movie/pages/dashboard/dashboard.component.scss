@@ -1,0 +1,22 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.header {
+  height: 72px;
+  width: 100vw; 
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 96vw;
+  margin: 0 auto;
+  margin-top: 72px;
+  display: block;
+}

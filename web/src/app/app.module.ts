@@ -22,21 +22,21 @@ import { SignupComponent } from './user/pages/signup/signup.component';
 import { DashboardComponent } from './movie/pages/dashboard/dashboard.component';
 import { MovieDetailsComponent } from './movie/pages/movie-details/movie-details.component';
 import { HeaderComponent } from './movie/components/header/header.component';
-import { MovieCatalogComponent } from './movie/components/movie-catalog/movie-catalog.component';
+import { MovieCatalogComponent } from './movie/pages/movie-catalog/movie-catalog.component';
 import { MovieSlideComponent } from './movie/components/movie-slide/movie-slide.component';
 import { FetchMovieComponent } from './movie/components/fetch-movie/fetch-movie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    LoginComponent,
     DashboardComponent,
-    MovieDetailsComponent,
-    SignupComponent,
     MovieCatalogComponent,
+    MovieDetailsComponent,
+    HeaderComponent,
     MovieSlideComponent,
     FetchMovieComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

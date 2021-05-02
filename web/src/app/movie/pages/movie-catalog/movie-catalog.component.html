@@ -1,0 +1,52 @@
+<main>
+  <div class="form-container">
+    <app-fetch-movie></app-fetch-movie>
+  </div>
+
+  <div class="featured-movie-container">
+    <div class="featured-movie" *ngIf="featuredMovie" routerLink="/movies/{{featuredMovie.id}}">
+      <img [src]="featuredMovie.poster_path" alt="Poster do Filme">
+      <section class="movie-info">
+        <h3 class="movie-title">{{ featuredMovie.title }}</h3>
+        <p>
+          <b>Nota:</b> {{ featuredMovie.vote_average }} ({{ featuredMovie.vote_count }} votos).
+        </p>
+        <p>
+          <b>Data de Lançamento:</b> {{ featuredMovie.release_date }}
+        </p>
+
+        <p class="movie-genres">
+          <b>Gêneros:</b>
+          <span *ngFor="let genre of featuredMovie.genres">
+            {{ genre.name }} |
+          </span>s>
+        </p>
+
+        <p>
+          <b>Overview:</b> {{ featuredMovie.overview }}
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <mat-list class="movies-catalog" role="list">
+
+    <li class="movies-list">
+      <app-movie-slide class="movie-list-item" [text]="movies.nowPlaying.text" [movies]="movies.nowPlaying.movies"></app-movie-slide>
+    </li>
+
+    <li class="movies-list">
+      <app-movie-slide class="movie-list-item" [text]="movies.popular.text" [movies]="movies.popular.movies"></app-movie-slide>
+    </li>
+
+    <li class="movies-list">
+      <app-movie-slide class="movie-list-item" [text]="movies.topRated.text" [movies]="movies.topRated.movies"></app-movie-slide>
+    </li>
+
+    <li class="movies-list">
+      <app-movie-slide class="movie-list-item" [text]="movies.upcoming.text" [movies]="movies.upcoming.movies"></app-movie-slide>
+    </li>
+
+  </mat-list>
+
+</main>

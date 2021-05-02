@@ -1,0 +1,149 @@
+@import '../../../styles/variables.scss';
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+header {
+  height: 72px;
+  width: 100vw; 
+  position: fixed;
+  top: 0;
+  background-color: $background-dark;
+  z-index: 3;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .content {
+  width: 100%;
+  margin: 6px 16px;
+  background-color: #111117;
+  color: $light;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.content .bar-and-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bar-and-title-container .btn-menu {
+  display: none;
+  width: 40px;
+  height: 40px;
+  margin-right: 24px;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border:none;
+}
+
+.btn-menu .menu-icon {
+  color: $light;
+}
+
+.bar-and-title-container .title {
+  color: #FFFFFF;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.6rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content .menu {
+  max-width: 360px;
+  min-width: 150px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu .menu-item {
+  text-align: center;
+  font-size: 1.2rem;
+  color: $light;
+  opacity: 0.8;
+  transition: all 0.2s;
+}
+
+.menu .menu-item:hover {
+  font-size: 105%;
+  font-weight: bold;
+  opacity: 1;
+}
+
+.content .btn-profile {
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid $light;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-profile .profile-icon {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 800px) {
+  .bar-and-title-container .btn-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  header.content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .content .menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu .menu-item {
+    width: 96px;
+    font-size: 1.0rem;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  header.content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .content .menu {
+    display: none;
+  }
+
+  .bar-and-title-container .title {
+    font-size: 1.4rem;
+  }
+}

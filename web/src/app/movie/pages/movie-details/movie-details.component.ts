@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Movie, MoviesListResponse } from '../../models/movie';
+import { Movie } from '../../models/movie';
 import { MovieService } from '../../movie.service';
 import { the_movie_database_api } from 'src/environments/environment';
+import { mapMovies } from 'src/utils/mapMovies';
 
 @Component({
   selector: 'app-movie-details',
@@ -13,7 +14,6 @@ import { the_movie_database_api } from 'src/environments/environment';
 export class MovieDetailsComponent implements OnInit {
 
   movieId: number = 0;
-  // @ts-nocheck 
   //@ts-ignore
   movie: Movie = {};
   recommendations: Movie[] = [];
@@ -43,20 +43,11 @@ export class MovieDetailsComponent implements OnInit {
     });
     
     this.movieService.getRecommendationsById(this.movieId).subscribe(response => {
-      this.recommendations = this.mapMovies(response);
+      this.recommendations = mapMovies(response);
     });
 
     this.movieService.getSimilarById(this.movieId).subscribe(response => {
-      this.similar = this.mapMovies(response);
-    });
-  }
-
-  mapMovies(moviesResponse: MoviesListResponse): Movie[] {
-    return moviesResponse.results.map((movie: Movie) => {
-      return {
-        ...movie,
-        poster_path: `${this.baseUrlImage}/w200/${movie.poster_path}`
-      };
+      this.similar = mapMovies(response);
     });
   }
 

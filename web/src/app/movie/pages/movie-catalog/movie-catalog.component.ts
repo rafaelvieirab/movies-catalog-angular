@@ -31,11 +31,12 @@ interface MovieDashboard {
   styleUrls: ['./movie-catalog.component.scss']
 })
 export class MovieCatalogComponent implements OnInit {
+  
   movies: MovieDashboard = {
     upcoming: {
       text: 'Próximos Filmes no Cinema',
       movies: []
-    },
+    }, 
     nowPlaying: {
       text: 'Continuar Assistindo',
       movies: []
@@ -49,13 +50,9 @@ export class MovieCatalogComponent implements OnInit {
       movies: []
     },
   };
-  genres: Genre[] = [];
   //@ts-ignore
   featuredMovie: (Movie | undefined) = undefined;
-  searchMovie: FormControl = new FormControl();
-  filteredMovies: Movie[] = [];
-  filtrationType: string = '';
-  showFilter: boolean = false;
+  genres: Genre[] = [];
   baseUrlImage: string = the_movie_database_api.baseUrlImage;
 
   constructor(private movieService: MovieService) { }
@@ -83,25 +80,11 @@ export class MovieCatalogComponent implements OnInit {
     });
   }
 
-  getMoviesBySearch() {
-    if(this.searchMovie.value) {
-      this.movieService.getBySearch(this.searchMovie.value).subscribe(response => {
-        // this.filteredMovies = (response | mapMovies:200) ;
-        this.filteredMovies = mapMovies(response) ;
-      })
-    }
-  }
-
-  getGenresOfFeatureMovie() {
-
-  }
-
   setFeatureMovie() {
     const randomMovieId = this.movies.topRated.movies[0].id;
     this.movieService.getById(randomMovieId).subscribe(response => {
       this.featuredMovie = response;
       this.featuredMovie.poster_path = `${this.baseUrlImage}/w200/${this.featuredMovie.poster_path}`;
-
     });
   }
 

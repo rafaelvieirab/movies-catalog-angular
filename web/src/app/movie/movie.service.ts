@@ -37,8 +37,7 @@ export class MovieService {
   }
 
   getPopular(): Observable<MoviesListResponse> {
-    const paramsUrl = '?language=pt-BR&page=1';
-    const url = `/movie/popular${paramsUrl}`;
+    const url = '/movie/popular';
     return this.http.get<MoviesListResponse>(url);
   }
 

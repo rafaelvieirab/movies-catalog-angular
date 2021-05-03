@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { the_movie_database_api } from 'src/environments/environment';
 
 interface Response {
   request_token: string,
@@ -14,7 +15,7 @@ interface Response {
 })
 export class UserService {
 
-  private baseUrl: string = 'https://api.themoviedb.org/3';
+  private baseUrl: string = the_movie_database_api.baseUrlv3;
 
   constructor(private http: HttpClient) { }
 
@@ -24,43 +25,11 @@ export class UserService {
     return new Observable();
   }
 
-  //User Authorization
-  /*
-  Basic Workflow
-
-    - Generate a new token request;
-    - Send the user to TMDb asking the user to approve the token;
-    - With an approved request token, generate a acess token;
-  */
-  handle() {
-    let request_token;
-    this.createTokenRequest().subscribe(response => {
-      if(response.success) {
-        request_token = response.request_token;
-        //enviar o usuário para outra janela, para aceitar
-        
-      } else {
-        console.error('Eror');
-      }
-    });
-  }
-
-  createTokenRequest(): Observable<Response> {
-    const baseUrl = ''; //'https://api.themoviedb.org/4'
-    const url = baseUrl + '/auth/request_token';
-
-    const body = {
-      "redirect_to": "http://www.themoviedb.org/"
-    }
-
-    return this.http.post<Response>(url, body);
-  }
-
   save(username: string, token: string) {
     const my_token = JSON.stringify({
       username: username,
       token: token,
     });
-    localStorage.setItem('movies-catalog-token', my_token);
+    localStorage.setItem('movies-catalog-auth', my_token);
   }
 }

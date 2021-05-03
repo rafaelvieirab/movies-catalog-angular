@@ -10,26 +10,6 @@ import { mapMovies } from 'src/utils/mapMovies';
   styleUrls: ['./fetch-movie.component.scss']
 })
 export class FetchMovieComponent implements OnInit {
-  movies = {
-    upcoming: {
-      text: 'Próximos Filmes no Cinema',
-      movies: []
-    },
-    nowPlaying: {
-      text: 'Continuar Assistindo',
-      movies: []
-    },
-    popular: {
-      text: 'Populares',
-      movies: []
-    },
-    topRated: {
-      text: 'Melhores Avaliados',
-      movies: []
-    },
-  };
-  //@ts-ignore
-  featuredMovie: (Movie | undefined) = undefined;
   searchMovie: FormControl = new FormControl();
   filteredMovies: Movie[] = [];
 
@@ -42,7 +22,7 @@ export class FetchMovieComponent implements OnInit {
     if(this.searchMovie.value) {
       this.movieService.getBySearch(this.searchMovie.value).subscribe(response => {
         this.filteredMovies = mapMovies(response);
-      })
+      });
     } else {
       this.filteredMovies = [];
     }

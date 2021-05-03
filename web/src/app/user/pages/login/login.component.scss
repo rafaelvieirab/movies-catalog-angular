@@ -6,7 +6,7 @@
   background-image: url('../../../../assets/img/BackgroundFullMetal.png');
 
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: center;
 }
 
@@ -16,6 +16,11 @@
   max-width: 680px;
   max-height: 720px;
   background-color: $background-dark;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 main .content {
@@ -34,9 +39,9 @@ main .content {
 }
 
 .content header .title {
-  font-size: 6.4rem;
+  font-size: 4.8rem;
+  line-height: 5.0rem;
   font-weight: bold;
-  line-height: 8.6rem;
   text-align: center;
 }
 

@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../user.service';
+import { Subscription } from 'rxjs';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   username: string = '';
   msgErrorUsername: string = '';
@@ -16,6 +17,8 @@ export class LoginComponent implements OnInit {
   msgErrorPassword: string = '';
 
   formGroup: FormGroup;
+  // @ts-ignore
+  private subscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.userService.login(this.username, this.password).subscribe();
+    this.subscription = this.userService.login(this.username, this.password).subscribe();
   }
 
   getErrorMessageUsername(): string {
@@ -74,6 +77,10 @@ export class LoginComponent implements OnInit {
       return 'A senha deve ter pelo menos 4 caracteres.';
     }
     return 'Senha Inválida.';
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

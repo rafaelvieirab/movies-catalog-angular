@@ -13,7 +13,7 @@
     <mat-nav-list class="slider-content" role="list" id="slider-movies">
       <li class="slider-item" *ngFor="let movie of movies">
         <a routerLink="/movies/{{ movie.id }}" class="movie-link">
-          <img class="movie-image" [src]="movie.poster_path" [alt]="movie.title">
+          <img class="movie-image" [src]="movie.poster_path | addBaseUrlImage" [alt]="movie.title">
         </a>
       </li>
     </mat-nav-list>

@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-import { the_movie_database_api } from 'src/environments/environment';
 import { Movie, Genre } from '../../models/movie';
-import { MovieService } from '../../movie.service';
-import { mapMovies } from 'src/utils/mapMovies';
+import { MovieService } from '../../services/movie.service';
 
 interface MovieDashboard {
   upcoming: {
@@ -30,8 +28,9 @@ interface MovieDashboard {
   templateUrl: './movie-catalog.component.html',
   styleUrls: ['./movie-catalog.component.scss']
 })
-export class MovieCatalogComponent implements OnInit {
+export class MovieCatalogComponent implements OnInit, OnDestroy {
   
+  genres: Genre[] = [];
   movies: MovieDashboard = {
     upcoming: {
       text: 'Próximos Filmes no Cinema',
@@ -50,42 +49,34 @@ export class MovieCatalogComponent implements OnInit {
       movies: []
     },
   };
-  //@ts-ignore
-  featuredMovie: (Movie | undefined) = undefined;
-  genres: Genre[] = [];
-  baseUrlImage: string = the_movie_database_api.baseUrlImage;
+
+  private subscriptions: Subscription[] = [];
 
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
-    this.movieService.getMoviesGenres().subscribe(response => {
+    this.subscriptions.push(this.movieService.getMoviesGenres().subscribe(response => {
       this.genres = response;
-    });
+    }));
+    
+    this.subscriptions.push(this.movieService.getMoviesNowPlaying().subscribe(response => {
+      this.movies.nowPlaying.movies = response.results;
+    }));
 
-    this.movieService.getMoviesNowPlaying().subscribe(response => {
-      this.movies.nowPlaying.movies = mapMovies(response);
-    });
+    this.subscriptions.push(this.movieService.getMoviesUpcoming().subscribe(response => {
+      this.movies.upcoming.movies = response.results;
+    }));
 
-    this.movieService.getMoviesUpcoming().subscribe(response => {
-      this.movies.upcoming.movies = mapMovies(response);
-    });
+    this.subscriptions.push(this.movieService.getPopular().subscribe(response => {
+      this.movies.popular.movies = response.results;
+    }));
 
-    this.movieService.getPopular().subscribe(response => {
-      this.movies.popular.movies = mapMovies(response);
-    });
-
-    this.movieService.getMoviesTopRated().subscribe(response => {
-      this.movies.topRated.movies = mapMovies(response);
-      this.setFeatureMovie();
-    });
+    this.subscriptions.push(this.movieService.getMoviesTopRated().subscribe(response => {
+      this.movies.topRated.movies = response.results;
+    }));
   }
 
-  setFeatureMovie() {
-    const randomMovieId = this.movies.topRated.movies[0].id;
-    this.movieService.getById(randomMovieId).subscribe(response => {
-      this.featuredMovie = response;
-      this.featuredMovie.poster_path = `${this.baseUrlImage}/w200/${this.featuredMovie.poster_path}`;
-    });
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
-
 }

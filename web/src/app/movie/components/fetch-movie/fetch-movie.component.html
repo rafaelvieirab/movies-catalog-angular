@@ -13,8 +13,8 @@
     >
 
     <mat-autocomplete #auto="matAutocomplete" class="search-autoComplete">
-      <mat-option class="search-option" *ngIf="filteredMovies===[]">
-        <p>Procurando Filmes...</p>
+      <mat-option class="search-option" *ngIf="filteredMovies.length === 0">
+        <p class="search-option-title">Procurando Filmes...</p>
       </mat-option>
       <mat-option 
         *ngFor="let filtered of filteredMovies" 
@@ -22,7 +22,7 @@
         [value]="filtered.title" 
         routerLink="/movies/{{ filtered.id }}"
       >
-        <img class="search-option-img" [src]="filtered.poster_path" height="48">
+        <img class="search-option-img" [src]="filtered.poster_path | addBaseUrlImage:48" height="48">
         <span class="search-option-title">{{filtered.title}}</span>
       </mat-option>
 

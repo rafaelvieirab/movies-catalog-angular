@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Genre, Movie, MoviesListResponse } from './models/movie';
+import { Genre, Movie, MoviesListResponse } from '../models/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,11 @@ export class MovieService {
 
   getById(id: number): Observable<Movie> {
     const url = `/movie/${id}`;
+    return this.http.get<Movie>(url);
+  }
+
+  getLatest(): Observable<Movie> {
+    const url = '/movie/latest';
     return this.http.get<Movie>(url);
   }
 

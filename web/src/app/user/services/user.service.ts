@@ -1,25 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { the_movie_database_api } from 'src/environments/environment';
-
-interface Response {
-  request_token: string,
-  status_code: number,
-  status_message: string,
-  success: boolean
-}
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private baseUrl: string = the_movie_database_api.baseUrlv3;
+  baseUrl: string = '';
 
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<boolean> {
+    const url = `${this.baseUrl}/login`;
+    this.http.post(url, {username, password});
+    const token = '';
+    this.save(username, token);
+    return new Observable();
+  }
+
+  signup(username: string, email:string, password: string): Observable<boolean> {
     const token = '';
     this.save(username, token);
     return new Observable();

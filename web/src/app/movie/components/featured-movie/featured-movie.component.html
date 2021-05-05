@@ -1,0 +1,25 @@
+<div class="featured-movie-container">
+  <div class="featured-movie" *ngIf="featuredMovie" routerLink="/movies/{{featuredMovie.id}}">
+    <img [src]="featuredMovie.poster_path | addBaseUrlImage" alt="Poster do Filme">
+    <section class="movie-info">
+      <h3 class="movie-title">{{ featuredMovie.title }}</h3>
+      <p>
+        <b>Nota:</b> {{ featuredMovie.vote_average }} ({{ featuredMovie.vote_count }} votos).
+      </p>
+      <p>
+        <b>Data de Lançamento:</b> {{ featuredMovie.release_date }}
+      </p>
+
+      <p class="movie-genres">
+        <b>Gêneros:</b>
+        <span *ngFor="let genre of featuredMovie.genres">
+          {{ genre.name }} |
+        </span>
+      </p>
+
+      <p>
+        <b>Overview:</b> {{ featuredMovie.overview }}
+      </p>
+    </section>
+  </div>
+</div>

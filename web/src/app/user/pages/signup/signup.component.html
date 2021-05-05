@@ -1,1 +1,30 @@
-<p>signup works!</p>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+  <div class="form-field">
+    <label for="username" class="label">Nome de Usuário</label>
+    <input type="text" class="input" name="username" formControlName="username"
+      placeholder="Digite seu nome de usuário" required>
+    <mat-error *ngIf="getErrorMessageUsername()" class="input-error">{{getErrorMessageUsername()}}</mat-error>
+  </div>
+
+  <div class="form-field">
+    <label for="username" class="label">Email</label>
+    <input type="text" class="input" name="email" formControlName="email"
+      placeholder="Digite seu email" required>
+    <mat-error *ngIf="getErrorMessageEmail()" class="input-error">{{getErrorMessageEmail()}}</mat-error>
+  </div>
+
+  <div class="form-field">
+    <label for="password" class="label">Senha</label>
+    <input type="password" name="password" formControlName="password" placeholder="Digite sua senha" required>
+    <mat-error *ngIf="formGroup.controls.password" class="input-error">
+      {{getErrorMessagePassword()}}
+    </mat-error>
+    <!-- !form.controls.password.pristine -->
+  </div>
+
+  <div class="actions">
+    <button type="submit" class="btnLogin" [disabled]="!formGroup.valid" color="warn">Cadastrar</button>
+    <a class="link" routerLink="/signup">Já tem conta? Então <b>entre</b> em sua conta.</a>
+  </div>
+</form>

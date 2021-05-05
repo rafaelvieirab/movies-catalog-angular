@@ -18,7 +18,7 @@ export interface Movie {
   runtime: number,
   status: string,
   vote_average: number,
-  vote_count: 3439
+  vote_count: number
 }
 
 export interface MoviesListResponse {
